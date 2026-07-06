@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackFi</title>
+
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2 class="text-lg">TrackFi</h2>
+                <p>Money Matters</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#dashboard" class="active dashLink">
+                <i class="fa-solid fa-table-cells-large"></i>
+                Dashboard
+            </a>
+            <a href="#settings" class="settLink">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+        </nav>
+
+        <button id="logout" class="btn-secondary">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+    </aside>
+
+    <!-- topbar -->
+    <header class="topbar">
+        <div class="profile">
+            <i class="fa-solid fa-user"></i>
+            <h3 id="user-name">John Doe</h3>
+        </div>
+
+        <button id="theme-btn" class="btn-circle">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </header>
+
+    <main class="main">
+
+        <!-- dashboard -->
+        <section id="dashboard" class="dashboard">
+
+            <div class="page-header">
+                <div>
+                    <h1 class="text-xl">Dashboard</h1>
+                    <p>Track every financial move</p>
+                </div>
+
+                <button id="addBtn" class="btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Transaction
+                </button>
+            </div>
+
+            <div class="overview-cards">
+                <div class="card balance">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+
+                    <div class="card-text">
+                        <p>Current Balance</p>
+                        <h3 id="displayBalance" class="text-xl">$0.00</h3>
+                    </div>
+                </div>
+
+                <div class="card income">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+
+                    <div class="card-text">
+                        <p>Total Income</p>
+                        <h3 id="displayIncome" class="text-xl">$0.00</h3>
+                    </div>
+                </div>
+
+                <div class="card expense">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+
+                    <div class="card-text">
+                        <p>Total Expense</p>
+                        <h3 id="displayExpense" class="text-xl">$0.00</h3>
+                    </div>
+                </div>
+
+                <div class="card total">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+
+                    <div class="card-text">
+                        <p>Total Transactions</p>
+                        <h3 id="displayCount" class="text-xl">0</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- settings -->
+        <section id="settings" class="settings">
+
+            <div class="page-header">
+                <h1 class="text-xl">Settings</h1>
+            </div>
+
+            <div class="settings-grid">
+
+                <div class="settings-card profile-card">
+                    <div class="settings-card-header">
+                        <div>
+                            <h3>Profile Information</h3>
+                            <p>Update your personal details and preferences.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-content">
+
+                        <div class="avatar-section">
+                            <div class="avatar-wrapper">
+                                <div class="avatar">R</div>
+                                <button class="avatar-edit">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
+                            </div>
+                            <p class="avatar-note">JPG/PNG • Max 1MB</p>
+                        </div>
+
+                        <div class="profile-form">
+
+                            <label>
+                                Full Name
+                                <div class="input-icon">
+                                    <i class="fa-solid fa-user"></i>
+                                    <input type="text" value="John Doe">
+                                </div>
+                            </label>
+
+                            <label>
+                                Email
+                                <div class="input-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <input type="email" value="john@example.com">
+                                </div>
+                            </label>
+
+                            <label>
+                                Currency
+                                <div class="input-icon">
+                                    <i class="fa-solid fa-coins"></i>
+                                    <select>
+                                        <option>INR - Indian Rupee</option>
+                                        <option>USD - United States Dollar</option>
+                                        <option>EUR - Euro</option>
+                                        <option>GBP - British Pound Sterling</option>
+                                        <option>JPY - Japanese Yen</option>
+                                    </select>
+                                </div>
+                            </label>
+
+                            <button class="btn-primary">
+                                <i class="fa-solid fa-floppy-disk"></i>
+                                Save Changes
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card password-card">
+                    <div class="settings-card-header">
+                        <div>
+                            <h3>Change Password</h3>
+                            <p>Keep your account secure.</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-form">
+
+                        <label>
+                            Current Password
+                            <div class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" placeholder="Current password">
+                            </div>
+                        </label>
+
+                        <label>
+                            New Password
+                            <div class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" placeholder="New password">
+                            </div>
+                        </label>
+
+                        <label>
+                            Confirm Password
+                            <div class="input-icon">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" placeholder="Confirm password">
+                            </div>
+                        </label>
+
+                        <button class="btn-primary">
+                            <i class="fa-solid fa-key"></i>
+                            Update Password
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="settings-card appearance-card">
+                    <div class="settings-card-header">
+                        <div>
+                            <h3>Appearance</h3>
+                            <p>Customize your interface.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-item">
+                        <div>
+                            <h4 class="text-md">Dark Mode</h4>
+                            <p>Switch theme mode</p>
+                        </div>
+
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-card data-card">
+                    <div class="settings-card-header">
+                        <div>
+                            <h3>Data Management</h3>
+                            <p>Backup or clear your financial data.</p>
+                        </div>
+                    </div>
+
+                    <div class="data-actions">
+
+                        <div class="card-item">
+                            <div>
+                                <h4 class="text-md">Export Data (CSV)</h4>
+                                <p>Download all your transactions as a CSV file.</p>
+                            </div>
+                            <button class="btn btn-secondary">
+                                <i class="fa-solid fa-download"></i>
+                                Export Data
+                            </button>
+                        </div>
+
+                        <div class="card-item">
+                            <div>
+                                <h4 class="text-md">Reset All Data</h4>
+                                <p>This action cannot be undone.</p>
+                            </div>
+                            <button class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i>
+                                Clear All Data
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <footer>
+                <p>&copy; 2026 | VISHAL SOLANKI</p>
+            </footer>
+
+        </section>
+
+    </main>
+
+
+    <!-- modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3>Add Transaction</h3>
+                <button id="closeBtn" class="btn-danger">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form class="modal-form">
+
+                <label>
+                    Type
+                    <select id="type" required>
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                </label>
+
+                <label>
+                    Description
+                    <input type="text" id="description" placeholder="e.g. Amazon, Salary, Coffee" required />
+                </label>
+
+                <div class="row">
+                    <label>
+                        Amount
+                        <input type="number" id="txAmount" required />
+                    </label>
+
+                    <label>
+                        Date
+                        <input type="date" id="txDate" required />
+                    </label>
+                </div>
+
+                <label>
+                    Category
+                    <select id="category" required>
+                        <option value="" disabled selected>Select category</option>
+                        <option value="Food & Dining">Food & Dining</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Bills">Recharge & Bills</option>
+                        <option value="Transport">Petrol & Auto</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+
+                <button type="submit" id="savebtn" class="btn btn-primary">
+                    Save Transaction
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
