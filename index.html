@@ -19,6 +19,7 @@
 <body>
 
     <aside class="sidebar">
+
         <div class="logo">
             <div class="logo-icon">
                 <i class="fa-solid fa-layer-group"></i>
@@ -41,6 +42,22 @@
             </a>
         </nav>
 
+        <div class="side-bottom">
+            <div class="profile">
+                <i class="fa-solid fa-user"></i>
+                <h3 id="user-name">John Doe</h3>
+            </div>
+
+            <div class="side-theme">
+                <span>Dark Mode</span>
+
+                <label class="switch">
+                    <input type="checkbox" id="darkModeSidebar">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
         <button id="logout" class="btn-secondary">
             <i class="fa-solid fa-right-from-bracket"></i>
             Logout
@@ -48,6 +65,22 @@
     </aside>
 
     <header class="topbar">
+
+        <div class="logo mobile-logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <div class="logo-text">
+                <h2 class="text-lg">TrackFi</h2>
+                <p>Money Matters</p>
+            </div>
+        </div>
+
+        <button id="menu-btn" class="btn-primary menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
         <div class="profile">
             <i class="fa-solid fa-user"></i>
             <h3 id="user-name">John Doe</h3>
@@ -122,16 +155,29 @@
 
 
             <div class="chart-card">
-                <div class="settings-card-header">
+                <div class="card-header">
                     <div>
                         <h3 class="text-md">Cash Flow Analysis</h3>
                         <p>Income vs Expense Overview</p>
                     </div>
                 </div>
 
-                <canvas id="myChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
 
+            <div class="records-table">
+                <div class="card-header">
+                    <div>
+                        <h3 class="text-md">All Transactions</h3>
+                    </div>
+
+                    <div class="table-filter">
+                        
+                    </div>
+                </div>
+            </div>
 
         </section>
 
@@ -144,7 +190,7 @@
             <div class="settings-grid">
 
                 <div class="settings-card profile-card">
-                    <div class="settings-card-header">
+                    <div class="card-header">
                         <div>
                             <h3 class="text-lg">Profile Information</h3>
                             <p>Update your personal details and preferences.</p>
@@ -205,7 +251,7 @@
                 </div>
 
                 <div class="settings-card password-card">
-                    <div class="settings-card-header">
+                    <div class="card-header">
                         <div>
                             <h3 class="text-lg">Change Password</h3>
                             <p>Keep your account secure.</p>
@@ -247,7 +293,7 @@
                 </div>
 
                 <div class="settings-card appearance-card">
-                    <div class="settings-card-header">
+                    <div class="card-header">
                         <div>
                             <h3 class="text-lg">Appearance</h3>
                             <p>Customize your interface.</p>
@@ -268,7 +314,7 @@
                 </div>
 
                 <div class="settings-card data-card">
-                    <div class="settings-card-header">
+                    <div class="card-header">
                         <div>
                             <h3 class="text-lg">Data Management</h3>
                             <p>Backup or clear your financial data.</p>

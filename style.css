@@ -22,7 +22,7 @@
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.1);
   --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.12);
-  --transition: 0.25s ease;
+  --transition: 0.25s ease-out;
 }
 
 body.dark-theme {
@@ -124,7 +124,7 @@ nav a {
 nav a:hover {
   background: var(--primary-light);
   color: var(--primary);
-  transform: translateX(8px);
+  transform: translateX(10px);
 }
 
 nav a.active {
@@ -161,8 +161,7 @@ button:focus-visible {
 
 .profile {
   display: flex;
-  align-items: center;
-  gap: 5px;
+  gap: 12px;
   color: var(--text-muted);
 }
 
@@ -231,6 +230,10 @@ button {
 
 button:hover {
   transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.96);
 }
 
 .btn-circle {
@@ -330,10 +333,41 @@ section {
   align-items: center;
   gap: 18px;
   transition: var(--transition);
+  animation: cardShow 0.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes cardShow {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.overview-cards .card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.overview-cards .card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.overview-cards .card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.overview-cards .card:nth-child(4) {
+  animation-delay: 0.4s;
 }
 
 .card-icon {
@@ -378,13 +412,31 @@ section {
   border-radius: 18px;
   padding: 22px;
   box-shadow: var(--shadow-sm);
-  margin-top: 30px;
+  margin: 30px 0;
+  animation: chartReveal 0.7s ease;
 }
 
-.chart-card canvas {
-  justify-self: center;
-  margin-top: 30px;
-  height: 320px !important;
+@keyframes chartReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 320px;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .modal {
@@ -397,7 +449,17 @@ section {
   backdrop-filter: blur(10px);
   z-index: 1000;
   padding: 20px;
-  animation: fade 0.2s ease;
+  animation: modalFade 0.3s ease;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
@@ -408,7 +470,19 @@ section {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
-  animation: scaleIn 0.25s ease;
+  animation: modalScale 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .modal-header {
@@ -467,6 +541,19 @@ section {
   display: flex;
   flex-direction: column;
   transition: var(--transition);
+  animation: settingsShow 0.6s ease;
+}
+
+@keyframes settingsShow {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .settings-card:hover {
@@ -489,13 +576,13 @@ section {
   grid-column: span 7;
 }
 
-.settings-card-header {
+.card-header {
   margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
 }
 
-.settings-card-header p {
+.card-header p {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 4px;
@@ -636,6 +723,22 @@ footer {
   text-align: center;
 }
 
+.mobile-logo {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.side-bottom {
+  display: none;
+  margin-top: auto;
+}
+
 @media (max-width: 1024px) {
   .settings-grid {
     grid-template-columns: repeat(6, 1fr);
@@ -658,28 +761,50 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
   .topbar,
   .main {
     margin-left: 0;
     width: 100%;
   }
 
+  .topbar {
+    justify-content: space-between;
+  }
+
+  .topbar .profile,
+  .topbar .btn-circle {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu-btn {
+    display: flex;
+    order: 3;
+  }
+
+  .sidebar {
+    width: 260px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -280px;
+    z-index: 9999;
+    transition: left 0.5s ease-out;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
   .card {
     flex-direction: column;
     text-align: center;
     padding: 20px;
-    min-height: 110px;
   }
 
   .card-icon {
@@ -691,51 +816,58 @@ footer {
   .text-xl {
     font-size: 22px;
   }
+
+  .side-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 20px;
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .side-bottom .profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .side-theme {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  #logout {
+    margin-top: 10px;
+  }
+
+  .chart-container {
+    height: 260px;
+  }
 }
 
 @media (max-width: 500px) {
-  .profile h3 {
-    display: none;
-  }
   .page-header {
     flex-direction: column;
     text-align: center;
     gap: 15px;
   }
 
-  .chart-card canvas {
-    height: 100% !important;
+  .chart-container {
+    height: 240px;
   }
 
   .main {
-    padding: 5px;
-  }
-
-  button {
-    font-size: 12px;
+    padding: 12px;
   }
 
   .card-item {
     gap: 10px;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
