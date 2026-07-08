@@ -18,6 +18,56 @@
 
 <body>
 
+    <div id="loginPage">
+
+        <div class="login-box">
+
+            <div class="logo" style="justify-content: center;">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+
+                <div class="logo-text">
+                    <h2 class="text-lg">TrackFi</h2>
+                    <p>Money Matters</p>
+                </div>
+            </div>
+
+
+            <form id="loginForm">
+                <h2>Welcome Back</h2>
+                <input id="loginEmail" type="email" placeholder="Email Address" required>
+                <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Enter Password">
+                <button type="submit" class="btn-primary">Login</button>
+
+                <p class="switch-text">
+                    New user?
+                    <span id="showSignup">
+                        Create Account
+                    </span>
+                </p>
+
+            </form>
+
+            <form id="signupForm" class="hidden">
+
+                <h2>Create Account</h2>
+                <input id="signupFullName" type="text" placeholder="Full Name" required>
+                <input id="signupEmail" type="email" placeholder="Email Address" required>
+                <input type="password" id="signupPassword" autocomplete="new-password" placeholder="New Password">
+                <input id="signupConfirm" type="password" placeholder="Confirm Password" required>
+                <button type="submit" class="btn-primary">Create Account</button>
+
+                <p class="switch-text">
+                    Already have account?
+                    <span id="showLogin">Login</span>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
     <aside class="sidebar">
 
         <div class="logo">
@@ -45,7 +95,7 @@
         <div class="side-bottom">
             <div class="profile">
                 <i class="fa-solid fa-user"></i>
-                <h3 id="user-name">John Doe</h3>
+                <h3 class="user-name"></h3>
             </div>
 
             <div class="side-theme">
@@ -83,7 +133,7 @@
 
         <div class="profile">
             <i class="fa-solid fa-user"></i>
-            <h3 id="user-name">John Doe</h3>
+            <h3 class="user-name"></h3>
         </div>
 
         <button id="theme-btn" class="btn-circle">
@@ -172,16 +222,65 @@
                     <div>
                         <h3 class="text-md">All Transactions</h3>
                     </div>
+                </div>
 
-                    <div class="table-filter">
-                        
+                <div class="table-filter">
+
+                    <div class="filter-actions">
+                        <div class="input-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input id="searchInput" type="search" placeholder="Search transactions...">
+                        </div>
+
+                        <div class="filter-buttons">
+                            <button class="btn-primary filter-btn active" data-filter="all">
+                                All
+                            </button>
+
+
+                            <button class="btn-secondary filter-btn" data-filter="income">
+                                Income
+                            </button>
+
+
+                            <button class="btn-secondary filter-btn" data-filter="expense">
+                                Expense
+                            </button>
+                        </div>
                     </div>
+
+
+                    <div>
+                        <select id="sortTransactions" class="btn-secondary">
+                            <option value="latest">Latest First</option>
+                            <option value="oldest">Oldest First</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DATE</th>
+                                <th>DESCRIPTION</th>
+                                <th>CATEGORY</th>
+                                <th>TYPE</th>
+                                <th>AMOUNT</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="transactionTableBody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
         </section>
 
-        <section id="settings" class="settings">
+        <section id="settings" class="settings hidden">
 
             <div class="page-header">
                 <h1 class="text-xl">Settings</h1>
@@ -201,7 +300,7 @@
 
                         <div class="avatar-section">
                             <div class="avatar-cover">
-                                <div class="avatar">R</div>
+                                <div class="avatar" id="avatarLetter"></div>
                                 <button class="avatar-btn">
                                     <i class="fa-solid fa-camera"></i>
                                 </button>
@@ -209,21 +308,13 @@
                             <p>JPG/PNG • Max 1MB</p>
                         </div>
 
-                        <div class="card-form">
+                        <form id="profileForm" class="card-form">
 
                             <label>
                                 Full Name
                                 <div class="input-icon">
                                     <i class="fa-solid fa-user"></i>
-                                    <input type="text" value="John Doe">
-                                </div>
-                            </label>
-
-                            <label>
-                                Email
-                                <div class="input-icon">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    <input type="email" value="john@example.com">
+                                    <input id="fullName" type="text" value="">
                                 </div>
                             </label>
 
@@ -231,22 +322,22 @@
                                 Currency
                                 <div class="input-icon">
                                     <i class="fa-solid fa-coins"></i>
-                                    <select>
-                                        <option>INR - Indian Rupee</option>
-                                        <option>USD - United States Dollar</option>
-                                        <option>EUR - Euro</option>
-                                        <option>GBP - British Pound Sterling</option>
-                                        <option>JPY - Japanese Yen</option>
+                                    <select id="currencySelect">
+                                        <option value="INR">INR - Indian Rupee</option>
+                                        <option value="USD">USD - United States Dollar</option>
+                                        <option value="EUR">EUR - Euro</option>
+                                        <option value="GBP">GBP - British Pound Sterling</option>
+                                        <option value="JPY">JPY - Japanese Yen</option>
                                     </select>
                                 </div>
                             </label>
 
-                            <button class="btn-primary">
+                            <button type="submit" id="saveProfile" class="btn-primary">
                                 <i class="fa-solid fa-floppy-disk"></i>
                                 Save Changes
                             </button>
 
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -258,21 +349,13 @@
                         </div>
                     </div>
 
-                    <div class="card-form">
-
-                        <label>
-                            Current Password
-                            <div class="input-icon">
-                                <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="Current password">
-                            </div>
-                        </label>
+                    <form id="passwordForm" class="card-form">
 
                         <label>
                             New Password
                             <div class="input-icon">
                                 <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="New password">
+                                <input id="newPassword" type="password" placeholder="New password">
                             </div>
                         </label>
 
@@ -280,16 +363,16 @@
                             Confirm Password
                             <div class="input-icon">
                                 <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="Confirm password">
+                                <input id="confirmPassword" type="password" placeholder="Confirm password">
                             </div>
                         </label>
 
-                        <button class="btn-primary">
+                        <button type="submit" class="btn-primary">
                             <i class="fa-solid fa-key"></i>
                             Update Password
                         </button>
 
-                    </div>
+                    </form>
                 </div>
 
                 <div class="settings-card appearance-card">
@@ -328,7 +411,7 @@
                                 <h4 class="text-md">Export Data (CSV)</h4>
                                 <p>Download all transactions as CSV file.</p>
                             </div>
-                            <button class="btn-secondary">
+                            <button id="exportData" class="btn-secondary">
                                 <i class="fa-solid fa-download"></i>
                                 Export Data
                             </button>
@@ -339,7 +422,7 @@
                                 <h4 class="text-md">Reset All Data</h4>
                                 <p>This action cannot be undone.</p>
                             </div>
-                            <button class="btn-danger">
+                            <button id="resetData" class="btn-danger">
                                 <i class="fa-solid fa-trash"></i>
                                 Clear All Data
                             </button>
@@ -368,7 +451,7 @@
                 </button>
             </div>
 
-            <form class="modal-form">
+            <form id="transactionForm" class="modal-form">
 
                 <label>
                     Type
